@@ -1,0 +1,166 @@
+using System;
+using System.Linq;
+namespace De_cat_coding
+{
+    class Program
+    {
+        static ulong CatToDec(string catNumber)
+        {
+            ulong result = 0;
+            foreach(char digit in catNumber)
+            {
+                result = (ulong)(digit - 'a') + result * 21;
+            }
+            return result;
+        }
+        static string DecTo26(ulong dec)
+        {
+            var result = string.Empty;
+            do
+            {
+                char digitValue = (char)('a' + (dec % 26));
+                result = digitValue + result;
+                dec /= 26;
+
+            }
+            while (dec > 0);
+
+            return result;
+        }
+        static void Main()
+        {
+            var input = Console.ReadLine().Split(' ').Select(CatToDec).Select(DecTo26).ToArray();
+            Console.WriteLine(String.Join(" ", input));
+        }
+    }
+}
+// variant 2
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+ 
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        public static long ConvertToDecimal(string text)
+        {
+            long output = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+                int digit = text[text.Length - 1 -i] - 'a';
+                long poweredDigit = PowerOf21(digit, i) * digit;
+                output += poweredDigit;
+            }
+            return output;
+        }
+        public static long PowerOf21(int digit, int power)
+        {
+            long result = 1;
+            for (int i = 0; i < power; i++)
+            {
+                result *= 21;
+            }
+            return result;
+        }
+        public static string ConvertToAlphabet(long numberInDecimal)
+        {
+            StringBuilder outputAlphabet = new StringBuilder();
+           
+            while (numberInDecimal > 0)
+            {
+                char symbolToAppend = (char)(numberInDecimal % 26 + 'a');
+                numberInDecimal /= 26;
+ 
+                outputAlphabet.Insert(0, symbolToAppend);
+            }
+            return outputAlphabet.ToString();
+        }
+        static void Main(string[] args)
+        {
+            string[] input = Console.ReadLine().Split(' ').ToArray();
+            string[] output = new string[input.Length];
+ 
+            for (int i = 0; i < input.Length; i++)
+            {
+              output[i]=ConvertToAlphabet(ConvertToDecimal(input[i]));
+            }
+            Console.WriteLine(string.Join(" ", output));
+        }
+    }
+}
+// variant 3
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+ 
+namespace _01
+{
+    class DeCatCoding
+    {
+        public static Dictionary<char, ulong> catToDec = new Dictionary<char, ulong>()
+            {
+                {'a', 0},
+                {'b', 1},
+                {'c', 2},
+                {'d', 3},
+                {'e', 4},
+                {'f', 5},
+                {'g', 6},
+                {'h', 7},
+                {'i', 8},
+                {'j', 9},
+                {'k', 10},
+                {'l', 11},
+                {'m', 12},
+                {'n', 13},
+                {'o', 14},
+                {'p', 15},
+                {'q', 16},
+                {'r', 17},
+                {'s', 18},
+                {'t', 19},
+                {'u', 20},
+            };
+        public static char[] decTo26 = new[]
+        {
+            'a', 'b', 'c', 'd','e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',  'm', 'n','o', 'p','q','r', 's','t', 'u',
+            'v', 'w','x','y','z',
+        };
+        static string Decode(string word)
+        {
+            StringBuilder output = new StringBuilder();
+            ulong tempNumber = 0;
+            char[] tempMass = word.ToCharArray();
+            for (int i = 0, j = tempMass.Length - 1; i < tempMass.Length; i++, j--)
+            {
+                tempNumber = tempNumber + catToDec[tempMass[i]]*(ulong) Math.Pow(21, j);
+            }
+ 
+            do
+            {
+                ulong ostatuk = 0; // :D
+                ostatuk = tempNumber%26;
+                tempNumber = tempNumber/26;
+                output.Append(decTo26[ostatuk]);
+            }
+            while (tempNumber>0);
+            char[] arr = output.ToString().ToCharArray();
+            Array.Reverse(arr);
+            return new string(arr);
+        }
+        static void Main(string[] args)
+        {
+            string[] input = Console.ReadLine().Split(' ');
+            for (int i = 0; i < input.Length; i++)
+            {
+                input[i] = Decode(input[i]);
+            }
+            Console.WriteLine(String.Join(" ", input));
+        }
+    }
+}

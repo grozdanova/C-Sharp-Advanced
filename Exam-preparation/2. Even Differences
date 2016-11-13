@@ -1,0 +1,28 @@
+using System;
+using System.Linq;
+namespace Even_Differences
+{
+    class Program
+    {
+        static void Main()
+        {
+            var sequence = Console.ReadLine().Split(' ').Select(long.Parse).ToArray();
+            long sum = 0;
+            long i = 1;
+            while(i<sequence.Length)
+            {
+                long absDiff = Math.Abs(sequence[i] - sequence[i - 1]);
+                if(absDiff % 2 ==0)
+                {
+                    sum += absDiff;
+                    i += 2;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+            Console.WriteLine(sum);
+        }
+    }
+}

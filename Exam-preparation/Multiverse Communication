@@ -1,0 +1,22 @@
+using System;
+using System.Collections.Generic;
+namespace Multiverse_Communication
+{
+    class Program
+    {
+        static void Main()
+        {
+            List<string> alphabet = new List<string> { "CHU", "TEL", "OFT", "IVA", "EMY", "VNB", "POQ", "ERI", "CAD", "K-A", "IIA", "YLO", "PLA" };
+            string input = Console.ReadLine();
+            long decNum = 0;
+            for(int i = 0; i<input.Length; i+=3)
+            {
+                string digitIn13 = input.Substring(i, 3);
+                int decValue = alphabet.IndexOf(digitIn13);
+                decNum *= 13;
+                decNum += decValue;
+            }
+            Console.WriteLine(decNum);
+        }
+    }
+}

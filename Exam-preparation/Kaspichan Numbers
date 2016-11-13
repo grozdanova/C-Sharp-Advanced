@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+namespace KaspichanNumbers
+{
+    class Program
+    {
+        static void Main()
+        {
+            ulong number = ulong.Parse(Console.ReadLine());
+            List<string> kaspichanNumbers = new List<string>();
+            for(char i='A'; i<='Z'; i++)
+            {
+                kaspichanNumbers.Add(i.ToString());
+            }
+            for(char i='a'; i<='z'; i++)
+            {
+                for (char j = 'A'; j <= 'Z'; j++)
+                {
+                    kaspichanNumbers.Add(i.ToString()+j);
+                }
+            }
+            string result = "";
+            if(number==0)
+            {
+                Console.WriteLine('A');
+            }
+            while(number !=0)
+            {
+                result = kaspichanNumbers[(int) (number % 256)] + result;
+                number = number / 256;
+            }
+            Console.WriteLine(result);
+        }
+    }
+}

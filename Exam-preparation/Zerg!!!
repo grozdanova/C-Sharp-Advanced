@@ -1,0 +1,22 @@
+using System;
+using System.Collections.Generic;
+namespace Zerg___
+{
+    class Program
+    {
+        static void Main()
+        {
+            List<string> alphabet = new List<string> { "Rawr", "Rrrr", "Hsst", "Ssst", "Grrr", "Rarr", "Mrrr", "Psst", "Uaah", "Uaha", "Zzzz", "Bauu", "Djav", "Myau", "Gruh" };
+            string input = Console.ReadLine();
+            long decNum = 0;
+            for (int i = 0; i < input.Length; i += 4)
+            {
+                string digitIn13 = input.Substring(i, 4);
+                int decValue = alphabet.IndexOf(digitIn13);
+                decNum *= 15;
+                decNum += decValue;
+            }
+            Console.WriteLine(decNum);
+        }
+    }
+}

@@ -1,0 +1,38 @@
+using System;
+using System.Linq;
+
+namespace ExamCalculation_Problem
+{
+    class Program
+    {
+        static int CatToDec(string miqu)
+        {
+            int result = 0;
+            foreach(char digit in miqu)
+            {
+                result = (digit - 'a') + result * 23;
+            }
+            return result;
+        }
+        static string DecToCat(int dec)
+        {
+            string result = string.Empty;
+            do
+            {
+                char digit = (char)('a' + (dec % 23));
+                result = digit + result;
+                dec /= 23;
+
+            } while (dec > 0);
+
+            return result;
+        }
+
+        static void Main()
+        {
+            var input = Console.ReadLine().Split(' ').Select(CatToDec).Sum();
+            var answer = DecToCat(input) + " = " + input;
+            Console.WriteLine(answer);
+        }
+    }
+}
