@@ -1,0 +1,23 @@
+using System;
+using System.Linq;
+namespace Sum_integers
+{
+    class CalculateSum
+    {
+        static void Main()
+        {
+            string numbers = Console.ReadLine();
+            Console.WriteLine(Function(numbers));
+        }
+        public static int Function(string numbers)
+        {
+            int[] integers = numbers.Split(' ').Select(int.Parse).ToArray();
+            int sum = 0;
+            for(int i=0; i<integers.Length; i++)
+            {
+                sum += integers[i];
+            }
+            return sum;
+        }
+    }
+}

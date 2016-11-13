@@ -1,0 +1,24 @@
+using System;
+namespace Numeral_Systems_Decimal_to_binary
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            long decimalNumber = long.Parse(Console.ReadLine());
+            Console.WriteLine(DecimalToBinary(decimalNumber));
+        }
+        static string DecimalToBinary(long decimalNumber)
+        {
+            long temp = 0;
+            string binary = string.Empty;
+            while(decimalNumber>0)
+            {
+                temp = decimalNumber % 2;
+                decimalNumber /= 2;
+                binary = temp + binary;
+            }
+            return binary;
+        }
+    }
+}

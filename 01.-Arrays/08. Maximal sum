@@ -1,0 +1,40 @@
+using System;
+namespace Maximal_sum
+{
+    class Program
+    {
+        static void Main()
+        {
+            int n = int.Parse(Console.ReadLine());
+            int[] arr = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                arr[i] = int.Parse(Console.ReadLine());
+            }
+            int currSum = arr[0];
+            int startIndex = 0;
+            int endIndex = 0;
+            int tempIndex = 0;
+            int maxSum = arr[0];
+
+            for (int i = 0; i < n; i++)
+            {
+                if (currSum <= 0)
+                {
+                    startIndex = i;
+                    currSum = 0;
+                }
+
+                currSum += arr[i];
+
+                if (currSum > maxSum)
+                {
+                    maxSum = currSum;
+                    tempIndex = startIndex;
+                    endIndex = i;
+                }
+            }          
+            Console.WriteLine(maxSum);
+        }
+    }
+}

@@ -1,0 +1,42 @@
+using System;
+namespace Numeral_Systems_Hexadecimal_to_decimal
+{
+    class Program
+    {
+        static void Main()
+        {
+            string hex = Console.ReadLine();
+            Console.WriteLine(HexToDecimal(hex));
+        }
+        static long HexToDecimal(string hex)
+        {
+            long dec = 0;
+            int position = hex.Length - 1;
+
+            foreach (var symbol in hex)
+            {
+                switch (symbol)
+                {
+                    case '0':
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                    case '5':
+                    case '6':
+                    case '7':
+                    case '8':
+                    case '9': dec += (long)Math.Pow(16, position) * (symbol - 48); break;
+                    case 'A': dec += (long)Math.Pow(16, position) * 10; break;
+                    case 'B': dec += (long)Math.Pow(16, position) * 11; break;
+                    case 'C': dec += (long)Math.Pow(16, position) * 12; break;
+                    case 'D': dec += (long)Math.Pow(16, position) * 13; break;
+                    case 'E': dec += (long)Math.Pow(16, position) * 14; break;
+                    case 'F': dec += (long)Math.Pow(16, position) * 15; break;
+                }
+                position--;
+            }
+            return dec;
+        }
+    }
+}

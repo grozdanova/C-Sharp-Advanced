@@ -1,0 +1,15 @@
+using System;
+class AllocateArray
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        int[] array = new int[20];
+        for (int index = 0; index < n; index++)
+        {
+            array[index] = index * 5;
+            Console.WriteLine(array[index]);
+        }
+        
+    }
+}

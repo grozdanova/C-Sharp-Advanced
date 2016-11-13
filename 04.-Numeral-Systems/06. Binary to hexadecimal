@@ -1,0 +1,17 @@
+using System;
+namespace Binary_to_hexadecimal
+{
+    class Program
+    {
+        static void Main()
+        {
+            string bin = Console.ReadLine();
+            Console.WriteLine(BinaryToHex(bin));
+        }
+        static string BinaryToHex(string bin)
+        {
+            string hexNumber = Convert.ToInt64(bin, 2).ToString("X");
+            return hexNumber;
+        }
+    }
+}

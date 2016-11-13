@@ -1,0 +1,43 @@
+using System;
+namespace Binary_search
+{
+    class Program
+    {
+        static void Main()
+        {
+            int n = int.Parse(Console.ReadLine());
+            int[] arr = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                arr[i] = int.Parse(Console.ReadLine());
+            }
+            int x = int.Parse(Console.ReadLine());
+            int counter = 0;
+            int startIndex = 0;
+            int endIndex = n - 1;
+            int midIndex = (endIndex - startIndex) / 2;
+            int result = -1;
+            while (counter <= n / 2)
+            {
+                if (arr[midIndex] == x)
+                {
+                    result = midIndex;
+                    break;
+                }
+                else if (arr[midIndex] < x)
+                {
+                    startIndex = midIndex + 1;
+                    midIndex = (endIndex + startIndex) / 2;
+                    counter++;
+                }
+                else
+                {
+                    endIndex = midIndex - 1;
+                    midIndex = (startIndex + endIndex) / 2;
+                    counter++;
+                }
+            }
+            Console.WriteLine(result);
+        }
+    }
+}

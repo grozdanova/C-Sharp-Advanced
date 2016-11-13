@@ -1,0 +1,44 @@
+using System;
+namespace Numeral_Systems_Decimal_to_hexadecimal
+{
+    class Program
+    {
+        static void Main()
+        {
+            long decimalNumber = long.Parse(Console.ReadLine());
+            Console.WriteLine(DecimalToHexadecimal(decimalNumber));
+        }
+        static string DecimalToHexadecimal(long decimalNumber)
+        {
+            string hex = string.Empty;
+            if (decimalNumber == 0)
+            {
+                return hex += 0;
+            }
+            while (decimalNumber > 0)
+            {
+                switch (decimalNumber % 16)
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 9: hex = decimalNumber % 16 + hex; break;
+                    case 10: hex = "A" + hex; break;
+                    case 11: hex = "B" + hex; break;
+                    case 12: hex = "C" + hex; break;
+                    case 13: hex = "D" + hex; break;
+                    case 14: hex = "E" + hex; break;
+                    case 15: hex = "F" + hex; break;
+                }
+                decimalNumber /= 16;
+            }
+            return hex;
+        }
+    }
+}

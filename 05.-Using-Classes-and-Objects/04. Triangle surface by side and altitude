@@ -1,0 +1,14 @@
+using System;
+namespace Triangle_surface_by_side_and_altitude
+{
+    class AreaOfTriangle
+    {
+        static void Main()
+        {
+            double side = double.Parse(Console.ReadLine());
+            double altitude = double.Parse(Console.ReadLine());
+            double area = (side * altitude) / 2;
+            Console.WriteLine("{0:F2}", area);
+        }
+    }
+}

@@ -1,0 +1,32 @@
+using System;
+namespace Maximal_sequence
+{
+    class Program
+    {
+        static void Main()
+        {
+            int N = int.Parse(Console.ReadLine());
+            int[] arrN = new int[N];
+            int start = 0;
+            int len = 1;
+
+            for (int i = 0; i < arrN.Length; i++)
+            {
+                arrN[i] = int.Parse(Console.ReadLine()); 
+            }
+            for (int i = 1; i < arrN.Length; i++)
+            {
+                if (arrN[i] == arrN[i - 1])
+                {
+                    len++;
+                    start = Math.Max(start, len);
+                }
+                else
+                {
+                    len = 1;
+                }
+            }
+            Console.WriteLine(start);
+        }
+    }
+}
